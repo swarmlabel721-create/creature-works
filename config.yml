@@ -1,0 +1,48 @@
+backend:
+  name: github
+  repo: swarmlabel721-create/creature-works
+  branch: main
+
+media_folder: "images"
+public_folder: "/images"
+
+locale: 'ja'
+
+collections:
+  - name: "blog"
+    label: "ブログ記事"
+    folder: "_posts"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { label: "タイトル", name: "title", widget: "string" }
+      - { label: "公開日", name: "date", widget: "datetime", format: "YYYY.MM.DD" }
+      - { label: "カテゴリ", name: "category", widget: "select", options: ["MAKING", "GRAFFITI", "3D PRINT", "EVENT", "INFO"] }
+      - { label: "サムネイル画像", name: "thumbnail", widget: "image", required: false }
+      - { label: "抜粋", name: "excerpt", widget: "text" }
+      - { label: "本文", name: "body", widget: "markdown" }
+      - { label: "FEATURED", name: "featured", widget: "boolean", default: false }
+
+  - name: "products"
+    label: "商品"
+    folder: "_products"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "商品名", name: "title", widget: "string" }
+      - { label: "商品番号", name: "sku", widget: "string" }
+      - { label: "価格", name: "price", widget: "number" }
+      - { label: "商品画像", name: "image", widget: "image" }
+      - { label: "バッジ", name: "badge", widget: "select", options: ["LIMITED", "NEW", "SOLD OUT", "なし"], default: "なし" }
+      - { label: "Stripe Payment Link", name: "stripe_url", widget: "string", required: false }
+      - { label: "在庫あり", name: "in_stock", widget: "boolean", default: true }
+
+  - name: "news"
+    label: "ニュース"
+    folder: "_news"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { label: "タイトル", name: "title", widget: "string" }
+      - { label: "日付", name: "date", widget: "datetime", format: "YYYY.MM.DD" }
+      - { label: "本文", name: "body", widget: "markdown" }
